@@ -24,12 +24,12 @@ The pipeline combines (i) a CLIP-based traffic-light classifier and (ii) a light
 
 - `TrafficLightOntology.rdf` : Traffic Light Ontology used by PRINGLE
 - `logs_training_vlm/`, `logs_training_vlm_onto/` : training logs (optional, for auditability)
-- `crops_jpg.zip`, `crops_json.zip` : optional prebuilt artifacts (otherwise regenerate with the scripts in `scripts/`)
 
 
 **Not included**
 - **DTLD dataset** (too large): download separately (link below)
 - **Trained weights** (`best_model_*.pt`): not tracked due to size; available upon request
+- **crops_jpg.zip, crops_json.zip**: optional prebuilt artifacts (otherwise regenerate with the scripts in `scripts/`); available upon request
 
 ---
 
