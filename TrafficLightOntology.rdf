@@ -1,0 +1,767 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/trafficLightOntology_/1.3#"
+     xml:base="http://www.semanticweb.org/trafficLightOntology_/1.3"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#">
+        <rdfs:comment>Traffic Light Ontology v1.3 - mapping between physical modules and signal states, with colorimetric restrictions and shape constraints.</rdfs:comment>
+        <owl:versionInfo>1.3</owl:versionInfo>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/trafficLightOntology_/1.3#controlsState -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#controlsState">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#SignalModule"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#SignalState"/>
+        <rdfs:comment>Links a SignalModule to the SignalState it controls.</rdfs:comment>
+        <rdfs:label>controlsState</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/trafficLightOntology_/1.3#hasAspect -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#hasAspect">
+        <rdfs:comment>DEPRECATED Optional overall visual aspect association.</rdfs:comment>
+        <rdfs:comment>no needed</rdfs:comment>
+        <rdfs:label>DEPRECATED hasAspect</rdfs:label>
+        <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/trafficLightOntology_/1.3#hasEmissionShape -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#hasEmissionShape">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#SignalState"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#Shape"/>
+        <rdfs:comment>Associates the emitted light of a SignalState with a geometric shape.</rdfs:comment>
+        <rdfs:label>hasEmissionShape</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/trafficLightOntology_/1.3#hasShape -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#hasShape">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#SignalModule"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#Shape"/>
+        <rdfs:comment>Associates a physical module with a geometric shape.</rdfs:comment>
+        <rdfs:label>hasShape</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/trafficLightOntology_/1.3#hasSignalModule -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#hasSignalModule">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#TrafficLight"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#SignalModule"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/trafficLightOntology_/1.3#isControlledBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#isControlledBy">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#SignalState"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#SignalModule"/>
+        <rdfs:comment>Inverse of controlsState.</rdfs:comment>
+        <rdfs:label>isControlledBy</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/trafficLightOntology_/1.3#hasCIE_x -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#hasCIE_x">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#SignalState"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+        <rdfs:comment>CIE 1931 x coordinate (decimal).</rdfs:comment>
+        <rdfs:label>hasCIE_x</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/trafficLightOntology_/1.3#hasCIE_y -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#hasCIE_y">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#SignalState"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+        <rdfs:comment>CIE 1931 y coordinate (decimal).</rdfs:comment>
+        <rdfs:label>hasCIE_y</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/trafficLightOntology_/1.3#hasColorUniformity -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#hasColorUniformity">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#SignalState"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+        <rdfs:comment>Boolean indicating color/luminance uniformity.</rdfs:comment>
+        <rdfs:label>hasColorUniformity</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/trafficLightOntology_/1.3#hasDominantWavelength -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#hasDominantWavelength">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#SignalState"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+        <rdfs:comment>Dominant wavelength (nm) as decimal.</rdfs:comment>
+        <rdfs:label>hasDominantWavelength</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/trafficLightOntology_/1.3#hasLuminance -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#hasLuminance">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#SignalState"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+        <rdfs:comment>Luminance (cd/m^2) as decimal.</rdfs:comment>
+        <rdfs:label>hasLuminance</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/trafficLightOntology_/1.3#BottomModule -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#BottomModule">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#SignalModule"/>
+        <rdfs:comment>SignalModule positioned at the bottom of the traffic light.</rdfs:comment>
+        <rdfs:label>BottomModule</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/trafficLightOntology_/1.3#FlashingState -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#FlashingState">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#SignalState"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#isControlledBy"/>
+                <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#MiddleModule"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/trafficLightOntology_/1.3#GreenState -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#GreenState">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#SignalState"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#isControlledBy"/>
+                <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#BottomModule"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#hasCIE_x"/>
+                <owl:someValuesFrom>
+                    <rdfs:Datatype>
+                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+                        <owl:withRestrictions rdf:parseType="Collection">
+                            <rdf:Description>
+                                <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.29</xsd:minInclusive>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <xsd:maxInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.31</xsd:maxInclusive>
+                            </rdf:Description>
+                        </owl:withRestrictions>
+                    </rdfs:Datatype>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#hasCIE_y"/>
+                <owl:someValuesFrom>
+                    <rdfs:Datatype>
+                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+                        <owl:withRestrictions rdf:parseType="Collection">
+                            <rdf:Description>
+                                <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.60</xsd:minInclusive>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <xsd:maxInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.62</xsd:maxInclusive>
+                            </rdf:Description>
+                        </owl:withRestrictions>
+                    </rdfs:Datatype>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#hasDominantWavelength"/>
+                <owl:someValuesFrom>
+                    <rdfs:Datatype>
+                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+                        <owl:withRestrictions rdf:parseType="Collection">
+                            <rdf:Description>
+                                <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">500</xsd:minInclusive>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <xsd:maxInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">570</xsd:maxInclusive>
+                            </rdf:Description>
+                        </owl:withRestrictions>
+                    </rdfs:Datatype>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#hasLuminance"/>
+                <owl:someValuesFrom>
+                    <rdfs:Datatype>
+                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+                        <owl:withRestrictions rdf:parseType="Collection">
+                            <rdf:Description>
+                                <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">300</xsd:minInclusive>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <xsd:maxInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">400</xsd:maxInclusive>
+                            </rdf:Description>
+                        </owl:withRestrictions>
+                    </rdfs:Datatype>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/trafficLightOntology_/1.3#MiddleModule -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#MiddleModule">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#SignalModule"/>
+        <rdfs:comment>SignalModule positioned in the middle of the traffic light.</rdfs:comment>
+        <rdfs:label>MiddleModule</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/trafficLightOntology_/1.3#OffState -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#OffState">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#SignalState"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/trafficLightOntology_/1.3#RedState -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#RedState">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#SignalState"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#isControlledBy"/>
+                <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#TopModule"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#hasCIE_x"/>
+                <owl:someValuesFrom>
+                    <rdfs:Datatype>
+                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+                        <owl:withRestrictions rdf:parseType="Collection">
+                            <rdf:Description>
+                                <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.67</xsd:minInclusive>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <xsd:maxInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.70</xsd:maxInclusive>
+                            </rdf:Description>
+                        </owl:withRestrictions>
+                    </rdfs:Datatype>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#hasCIE_y"/>
+                <owl:someValuesFrom>
+                    <rdfs:Datatype>
+                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+                        <owl:withRestrictions rdf:parseType="Collection">
+                            <rdf:Description>
+                                <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.29</xsd:minInclusive>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <xsd:maxInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.33</xsd:maxInclusive>
+                            </rdf:Description>
+                        </owl:withRestrictions>
+                    </rdfs:Datatype>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#hasDominantWavelength"/>
+                <owl:someValuesFrom>
+                    <rdfs:Datatype>
+                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+                        <owl:withRestrictions rdf:parseType="Collection">
+                            <rdf:Description>
+                                <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">620.0</xsd:minInclusive>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <xsd:maxInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">630.0</xsd:maxInclusive>
+                            </rdf:Description>
+                        </owl:withRestrictions>
+                    </rdfs:Datatype>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#hasLuminance"/>
+                <owl:someValuesFrom>
+                    <rdfs:Datatype>
+                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+                        <owl:withRestrictions rdf:parseType="Collection">
+                            <rdf:Description>
+                                <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">200</xsd:minInclusive>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <xsd:maxInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">300</xsd:maxInclusive>
+                            </rdf:Description>
+                        </owl:withRestrictions>
+                    </rdfs:Datatype>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/trafficLightOntology_/1.3#Shape -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#Shape">
+        <rdfs:comment>Geometric shape descriptor for modules and emitted light.</rdfs:comment>
+        <rdfs:label>Shape</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/trafficLightOntology_/1.3#SignalModule -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#SignalModule">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#hasShape"/>
+                <owl:hasValue rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#CircularShape"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#controlsState"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#SignalState"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>Physical optical module mounted on the traffic light (one per color).</rdfs:comment>
+        <rdfs:label>SignalModule</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/trafficLightOntology_/1.3#SignalState -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#SignalState">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#hasEmissionShape"/>
+                <owl:hasValue rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#CircularShape"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#isControlledBy"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#SignalModule"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>Operational/functional state of the luminous signal (color or mode).</rdfs:comment>
+        <rdfs:label>SignalState</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/trafficLightOntology_/1.3#TopModule -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#TopModule">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#SignalModule"/>
+        <rdfs:comment>SignalModule positioned at the top of the traffic light.</rdfs:comment>
+        <rdfs:label>TopModule</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/trafficLightOntology_/1.3#TrafficLight -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#TrafficLight">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#hasSignalModule"/>
+                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">3</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>Physical traffic light device composed of signal modules.</rdfs:comment>
+        <rdfs:label>TrafficLight</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/trafficLightOntology_/1.3#YellowState -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#YellowState">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#SignalState"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#isControlledBy"/>
+                <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#MiddleModule"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#isControlledBy"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#SignalModule"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#hasCIE_x"/>
+                <owl:someValuesFrom>
+                    <rdfs:Datatype>
+                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+                        <owl:withRestrictions rdf:parseType="Collection">
+                            <rdf:Description>
+                                <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.54</xsd:minInclusive>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <xsd:maxInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.57</xsd:maxInclusive>
+                            </rdf:Description>
+                        </owl:withRestrictions>
+                    </rdfs:Datatype>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#hasCIE_y"/>
+                <owl:someValuesFrom>
+                    <rdfs:Datatype>
+                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+                        <owl:withRestrictions rdf:parseType="Collection">
+                            <rdf:Description>
+                                <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.43</xsd:minInclusive>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <xsd:maxInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.46</xsd:maxInclusive>
+                            </rdf:Description>
+                        </owl:withRestrictions>
+                    </rdfs:Datatype>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#hasDominantWavelength"/>
+                <owl:someValuesFrom>
+                    <rdfs:Datatype>
+                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+                        <owl:withRestrictions rdf:parseType="Collection">
+                            <rdf:Description>
+                                <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">585</xsd:minInclusive>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <xsd:maxInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">595</xsd:maxInclusive>
+                            </rdf:Description>
+                        </owl:withRestrictions>
+                    </rdfs:Datatype>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#hasLuminance"/>
+                <owl:someValuesFrom>
+                    <rdfs:Datatype>
+                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+                        <owl:withRestrictions rdf:parseType="Collection">
+                            <rdf:Description>
+                                <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">250</xsd:minInclusive>
+                            </rdf:Description>
+                            <rdf:Description>
+                                <xsd:maxInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">400</xsd:maxInclusive>
+                            </rdf:Description>
+                        </owl:withRestrictions>
+                    </rdfs:Datatype>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/trafficLightOntology_/1.3#hasSignalModule -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#hasSignalModule"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#inverseOf -->
+
+    <owl:Class rdf:about="http://www.w3.org/2002/07/owl#inverseOf"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/trafficLightOntology_/1.3#BottomModule_A01 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#BottomModule_A01">
+        <rdf:type rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#BottomModule"/>
+        <hasShape rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#CircularShape"/>
+        <rdfs:label>Bottom Module A01</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/trafficLightOntology_/1.3#CircularShape -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#CircularShape">
+        <rdf:type rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#Shape"/>
+        <rdfs:comment>Represents circular geometry.</rdfs:comment>
+        <rdfs:label>CircularShape</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/trafficLightOntology_/1.3#FlashingState -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#FlashingState"/>
+    
+
+
+    <!-- http://www.semanticweb.org/trafficLightOntology_/1.3#GreenState -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#GreenState"/>
+    
+
+
+    <!-- http://www.semanticweb.org/trafficLightOntology_/1.3#GreenState_A01 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#GreenState_A01">
+        <rdf:type rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#GreenState"/>
+        <hasEmissionShape rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#CircularShape"/>
+        <hasCIE_x rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.30</hasCIE_x>
+        <hasCIE_y rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.61</hasCIE_y>
+        <hasDominantWavelength rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">505</hasDominantWavelength>
+        <hasLuminance rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">320</hasLuminance>
+        <rdfs:label>Green State A01</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/trafficLightOntology_/1.3#MiddleModule_A01 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#MiddleModule_A01">
+        <rdf:type rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#MiddleModule"/>
+        <hasShape rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#CircularShape"/>
+        <rdfs:label>Middle Module A01</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/trafficLightOntology_/1.3#OffState -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#OffState"/>
+    
+
+
+    <!-- http://www.semanticweb.org/trafficLightOntology_/1.3#RedState -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#RedState"/>
+    
+
+
+    <!-- http://www.semanticweb.org/trafficLightOntology_/1.3#RedState_A01 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#RedState_A01">
+        <rdf:type rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#RedState"/>
+        <hasEmissionShape rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#CircularShape"/>
+        <hasCIE_x rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.69</hasCIE_x>
+        <hasCIE_y rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.31</hasCIE_y>
+        <hasDominantWavelength rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">625</hasDominantWavelength>
+        <hasLuminance rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">250</hasLuminance>
+        <rdfs:label>Red State A01</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/trafficLightOntology_/1.3#TopModule_A01 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#TopModule_A01">
+        <rdf:type rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#TopModule"/>
+        <hasShape rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#CircularShape"/>
+        <rdfs:label>Top Module A01</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/trafficLightOntology_/1.3#TrafficLight_A01 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#TrafficLight_A01">
+        <rdf:type rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#TrafficLight"/>
+        <rdfs:label>TrafficLight A01</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/trafficLightOntology_/1.3#YellowState -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#YellowState"/>
+    
+
+
+    <!-- http://www.semanticweb.org/trafficLightOntology_/1.3#YellowState_A01 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#YellowState_A01">
+        <rdf:type rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#YellowState"/>
+        <hasEmissionShape rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#CircularShape"/>
+        <hasCIE_x rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.55</hasCIE_x>
+        <hasCIE_y rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.44</hasCIE_y>
+        <hasDominantWavelength rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">590</hasDominantWavelength>
+        <hasLuminance rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">350</hasLuminance>
+        <rdfs:label>Yellow State A01</rdfs:label>
+    </owl:NamedIndividual>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#hasSignalModule"/>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#hasSignalModule"/>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.semanticweb.org/trafficLightOntology_/1.3#hasSignalModule"/>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#inverseOf"/>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotations
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#FlashingState">
+        <rdfs:comment>Intermittent (flashing) signal state.</rdfs:comment>
+        <rdfs:label>FlashingState</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#GreenState">
+        <rdfs:comment>Green signal state.</rdfs:comment>
+        <rdfs:label>GreenState</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#OffState">
+        <rdfs:comment>No light emitted state.</rdfs:comment>
+        <rdfs:label>OffState</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#RedState">
+        <rdfs:comment>Red signal state.</rdfs:comment>
+        <rdfs:label>RedState</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#YellowState">
+        <rdfs:comment>Yellow/amber signal state.</rdfs:comment>
+        <rdfs:label>YellowState</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#hasSignalModule">
+        <rdfs:comment>Associates a TrafficLight with its SignalModule components.</rdfs:comment>
+        <rdfs:label>hasSignalModule</rdfs:label>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#FlashingState"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#GreenState"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#OffState"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#RedState"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/trafficLightOntology_/1.3#YellowState"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi -->
+
