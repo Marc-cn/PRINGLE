@@ -1,6 +1,6 @@
 ## PRINGLE
 
-**PRINGLE** (Perception-Reasoning INference with Graph-based Logical Evaluation) is a reproducible research pipeline for **ontology-guided semantic validation of vision–language perception in autonomous driving**, focused on **traffic-light perception under physical manipulation and ambiguity**.
+**PRINGLE** ( PeRception INteGrity pipeLinE) is a reproducible research pipeline for **ontology-guided semantic validation of vision–language perception in autonomous driving**, focused on **traffic-light perception under physical manipulation and ambiguity**.
 
 The pipeline combines (i) a CLIP-based traffic-light classifier and (ii) a lightweight ontology-driven semantic consistency checker used at inference time.
 
