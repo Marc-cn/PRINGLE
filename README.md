@@ -1,35 +1,39 @@
-# PRINGLE
+## PRINGLE
 
-**PRINGLE** (Perception-Reasoning INference with Graph-based Logical Evaluation) is a research framework for **ontology-guided semantic validation of vision–language perception in autonomous driving**, with a focus on **traffic-light perception under adversarial and ambiguous conditions**.
+**PRINGLE** (Perception-Reasoning INference with Graph-based Logical Evaluation) is a reproducible research pipeline for **ontology-guided semantic validation of vision–language perception in autonomous driving**, focused on **traffic-light perception under physical manipulation and ambiguity**.
 
-Unlike prior vision–language or ontology-based approaches that operate offline or at the planning layer, PRINGLE embeds **explicit symbolic reasoning directly into the perception pipeline**, enabling inference-time validation of visual interpretations against domain knowledge, traffic rules, and contextual constraints.
-
----
-
-## Key idea
-
-PRINGLE treats perception failures not only as statistical errors, but as **violations of semantic and physical consistency**.  
-By combining vision–language models with a **domain-specific traffic-light ontology**, the framework detects visually plausible but semantically invalid observations caused by physical manipulation, environmental ambiguity, or long-tail edge cases.
+The pipeline combines (i) a CLIP-based traffic-light classifier and (ii) a lightweight ontology-driven semantic consistency checker used at inference time.
 
 ---
 
-## Scope and focus
+## Repository structure
 
-- **Targeted domain:** traffic-light perception
-- **Threat model:** physical-world manipulation and ambiguity (e.g., light injection, reflections)
-- **Primary goal:** security-oriented semantic validation at inference time
-- **Out of scope:** network attacks, digital adversarial examples, V2X compromise
+- `datasets/test_set/` : 25-image benchmark used for attack vs. not-attacked evaluation (manifests/splits included)
+- `1-convert_to_jpg.py` : converts DTLD images to JPEG
+- `2-crop_from_jpgs.py` : crops traffic-light patches using DTLD annotations
+- `3-make_json_from_crops.py` : builds `crops_json/` metadata for training/evaluation
+- `4_1-train_vlm.py` : trains the **baseline** VLM (no ontology)
+- `4_2-train_vlm_onto.py` : trains the **ontology-driven** VLM (PRINGLE)
+- `6-test_models.py` : evaluates baseline vs PRINGLE on the 25-image test set
+- `TrafficLightOntology.rdf` : Traffic Light Ontology used by PRINGLE
+- `logs_training_vlm/`, `logs_training_vlm_onto/` : training logs (optional, for auditability)
+- `crops_jpg.zip`, `crops_json.zip` : optional prebuilt artifacts (otherwise regenerate with scripts)
+
+**Not included**
+- **DTLD dataset** (too large): download separately (link below)
+- **Trained weights** (`best_model_*.pt`): not tracked due to size; available upon request
 
 ---
 
-## Repository contents
+## Data
 
-This repository provides **dataset manifests, splits, and preparation scripts** used in the PRINGLE evaluation.
+### DTLD (required for training/validation)
+Download DTLD from the official source and keep it outside the repo:
 
-## Datasets
+https://www.uni-ulm.de/en/in/iui-driveu/driving-benchmark/
 
-PRINGLE experiments are based on:
-- **DTLD (DriveU Traffic Light Dataset)** for training and validation
-- **A 25-image traffic-light attack benchmark** combining real-world and manipulated samples for evaluation
-
-Exact dataset composition and provenance are documented in `datasets/`.
+Example local layout:
+```text
+/data/DTLD/
+  images/...
+  annotations/...
