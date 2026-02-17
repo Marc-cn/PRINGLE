@@ -28,6 +28,7 @@ The pipeline combines (i) a CLIP-based traffic-light classifier and (ii) a light
 
 **Not included**
 - **DTLD dataset** (too large): download separately (link below)
+- **Baseline dataset for testing**: download separately (link below)
 - **Trained weights** (`best_model_*.pt`): not tracked due to size; available upon request
 - **crops_jpg.zip, crops_json.zip**: optional prebuilt artifacts (otherwise regenerate with the scripts in `scripts/`); available upon request
 
@@ -38,10 +39,14 @@ The pipeline combines (i) a CLIP-based traffic-light classifier and (ii) a light
 ### DTLD (required for training/validation)
 Download DTLD from the official source and keep it outside the repo:
 
-https://www.uni-ulm.de/en/in/iui-driveu/driving-benchmark/
+[https://www.uni-ulm.de/en/in/iui-driveu/driving-benchmark/](https://www.uni-ulm.de/en/in/institute-of-measurement-control-and-microtechnology/research/data-sets/driveu-traffic-light-dataset/)
 
-Example local layout:
-```text
-/data/DTLD/
-  images/...
-  annotations/...
+### Test Dataset
+
+The 25-image attack benchmark used for evaluation is derived from:
+
+Bhupathiraju, Sri Hrushikesh Varma, Takami Sato, Michael Clifford, Takeshi Sugawara, Qi Alfred Chen, and Sara Rampazzi. 2025. *To Go or Not to Go: Shedding Light on Traffic Light Signal Manipulation and Defense Strategies*. ACM Transactions on Cyber-Physical Systems. Association for Computing Machinery, New York, NY, USA. https://doi.org/10.1145/3777451
+
+Dataset access (OSF repository):
+https://osf.io/uet7h/overview?view_only=52dd96073b484435bb09723381aefabb
+
