@@ -9,15 +9,19 @@ The pipeline combines (i) a CLIP-based traffic-light classifier and (ii) a light
 ## Repository structure
 
 - `datasets/test_set/` : 25-image benchmark used for attack vs. not-attacked evaluation (manifests/splits included)
-- `1-convert_to_jpg.py` : converts DTLD images to JPEG
-- `2-crop_from_jpgs.py` : crops traffic-light patches using DTLD annotations
-- `3-make_json_from_crops.py` : builds `crops_json/` metadata for training/evaluation
-- `4_1-train_vlm.py` : trains the **baseline** VLM (no ontology)
-- `4_2-train_vlm_onto.py` : trains the **ontology-driven** VLM (PRINGLE)
-- `5-test_models.py` : evaluates baseline vs PRINGLE on the 25-image test set
+
+- `scripts/`
+  - `1-convert_to_jpg.py` : converts DTLD images to JPEG
+  - `2-crop_from_jpgs.py` : crops traffic-light patches using DTLD annotations
+  - `3-make_json_from_crops.py` : builds `crops_json/` metadata for training/evaluation
+  - `4_1-train_vlm.py` : trains the **baseline** VLM (no ontology)
+  - `4_2-train_vlm_onto.py` : trains the **ontology-driven** VLM (PRINGLE)
+  - `5-test_models.py` : evaluates baseline vs PRINGLE on the 25-image test set
+
 - `TrafficLightOntology.rdf` : Traffic Light Ontology used by PRINGLE
 - `logs_training_vlm/`, `logs_training_vlm_onto/` : training logs (optional, for auditability)
-- `crops_jpg.zip`, `crops_json.zip` : optional prebuilt artifacts (otherwise regenerate with scripts)
+- `crops_jpg.zip`, `crops_json.zip` : optional prebuilt artifacts (otherwise regenerate with the scripts in `scripts/`)
+
 
 **Not included**
 - **DTLD dataset** (too large): download separately (link below)
