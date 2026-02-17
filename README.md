@@ -12,7 +12,7 @@ The pipeline combines (i) a CLIP-based traffic-light classifier and (ii) a light
 
 ## Repository structure
 
-- `datasets/test_set/` : 25-image benchmark used for attack vs. not-attacked evaluation (manifests/splits included)
+- `test_set/` : 25-image benchmark used for attack vs. not-attacked evaluation (manifests/splits included)
 
 - `scripts/`
   - `1-convert_to_jpg.py` : converts DTLD images to JPEG
