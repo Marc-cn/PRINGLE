@@ -14,7 +14,7 @@ The pipeline combines (i) a CLIP-based traffic-light classifier and (ii) a light
 - `3-make_json_from_crops.py` : builds `crops_json/` metadata for training/evaluation
 - `4_1-train_vlm.py` : trains the **baseline** VLM (no ontology)
 - `4_2-train_vlm_onto.py` : trains the **ontology-driven** VLM (PRINGLE)
-- `6-test_models.py` : evaluates baseline vs PRINGLE on the 25-image test set
+- `5-test_models.py` : evaluates baseline vs PRINGLE on the 25-image test set
 - `TrafficLightOntology.rdf` : Traffic Light Ontology used by PRINGLE
 - `logs_training_vlm/`, `logs_training_vlm_onto/` : training logs (optional, for auditability)
 - `crops_jpg.zip`, `crops_json.zip` : optional prebuilt artifacts (otherwise regenerate with scripts)
