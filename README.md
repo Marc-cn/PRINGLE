@@ -12,8 +12,6 @@ The pipeline combines (i) a CLIP-based traffic-light classifier and (ii) a light
 
 ## Repository structure
 
-- `test_set/` : 25-image benchmark used for attack vs. not-attacked evaluation (manifests/splits included)
-
 - `scripts/`
   - `1-convert_to_jpg.py` : converts DTLD images to JPEG
   - `2-crop_from_jpgs.py` : crops traffic-light patches using DTLD annotations
@@ -21,7 +19,7 @@ The pipeline combines (i) a CLIP-based traffic-light classifier and (ii) a light
   - `4_1-train_vlm.py` : trains the **baseline** VLM (no ontology)
   - `4_2-train_vlm_onto.py` : trains the **ontology-driven** VLM (PRINGLE)
   - `5-test_models.py` : evaluates baseline vs PRINGLE on the 25-image test set
-
+- `test_set/` : 25-image benchmark used for attack vs. not-attacked evaluation (manifests/splits included)
 - `TrafficLightOntology.rdf` : Traffic Light Ontology used by PRINGLE
 - `logs_training_vlm/`, `logs_training_vlm_onto/` : training logs (optional, for auditability)
 
