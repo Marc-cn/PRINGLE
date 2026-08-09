@@ -6,45 +6,111 @@ PRINGLE is described in:
 
 [article reference]
 
-The pipeline combines (i) a CLIP-based traffic-light classifier and (ii) a lightweight ontology-driven semantic consistency checker used at inference time.
-
 ---
 
-## Repository structure
+Not included in this repository is the DTLD dataset; you can download it [here](https://www.uni-ulm.de/en/in/institute-of-measurement-control-and-microtechnology/research/data-sets/driveu-traffic-light-dataset/).
 
-- `scripts/`
-  - `1-convert_to_jpg.py` : converts DTLD images to JPEG
-  - `2-crop_from_jpgs.py` : crops traffic-light patches using DTLD annotations
-  - `3-make_json_from_crops.py` : builds `crops_json/` metadata for training/evaluation
-  - `4_1-train_vlm.py` : trains the **baseline** VLM (no ontology)
-  - `4_2-train_vlm_onto.py` : trains the **ontology-driven** VLM (PRINGLE)
-  - `5-test_models.py` : evaluates baseline vs PRINGLE on the 25-image test set
-- `test_set/` : 25-image benchmark used for attack vs. not-attacked evaluation (manifests/splits included)
-- `TrafficLightOntology.rdf` : Traffic Light Ontology used by PRINGLE
-- `logs_training_vlm/`, `logs_training_vlm_onto/` : training logs (optional, for auditability)
+## Layout
+
+```
+clean/
+  data/
+    dtld/           # YOU provide: DTLD city data
+    labels/         # YOU provide: DTLD_Labels_v2.0/v2.0 JSON (Berlin.json, …)
+    laser/          # provided: Red/ Green/ IR_modulated/ reference traces
+    crops_jpg/      # created by process_data.py
+    synth_jpg/      # optional; created by process_data.py
+  checkpoints/      # place or train *.pt checkpoints here
+  output/           # laser ASR + cardinality-consistency results
+```
 
 
-**Not included**
-- **DTLD dataset** (too large): download separately (link below)
-- **Baseline dataset for testing**: download separately (link below)
-- **Trained weights** (`best_model_*.pt`): not tracked due to size; available upon request
-- **crops_jpg.zip, crops_json.zip**: optional prebuilt artifacts (otherwise regenerate with the scripts in `scripts/`); available upon request
 
----
+## 1. Create Environment
 
-## Data
+```bash
+conda env create -f clean/environment.yml
+conda activate traffic-vlm
+```
 
-### DTLD (required for training/validation)
-Download DTLD from the official source and keep it outside the repo:
 
-[https://www.uni-ulm.de/en/in/iui-driveu/driving-benchmark/](https://www.uni-ulm.de/en/in/institute-of-measurement-control-and-microtechnology/research/data-sets/driveu-traffic-light-dataset/)
 
-### Test Dataset
+## 2. Prepare `data/`
 
-The 25-image attack benchmark used for evaluation is derived from:
+Copy (or symlink) inputs into place:
 
-Bhupathiraju, Sri Hrushikesh Varma, Takami Sato, Michael Clifford, Takeshi Sugawara, Qi Alfred Chen, and Sara Rampazzi. 2025. *To Go or Not to Go: Shedding Light on Traffic Light Signal Manipulation and Defense Strategies*. ACM Transactions on Cyber-Physical Systems. Association for Computing Machinery, New York, NY, USA. https://doi.org/10.1145/3777451
 
-Dataset access (OSF repository):
-https://osf.io/uet7h/overview?view_only=52dd96073b484435bb09723381aefabb
+| Path                                          | Contents                                          |
+| --------------------------------------------- | ------------------------------------------------- |
+| `data/dtld/`                                  | DTLD image tree (city folders / `*_k0.tiff`, …)   |
+| `data/labels/`                                | Per-city label JSON from `DTLD_Labels_v2.0/v2.0/` |
+| `data/laser/Red`, `…/Green`, `…/IR_modulated` | Reference laser / IR frames                       |
+
+
+
+
+## 3. Build crops (+ optional synth attacks)
+
+From this directory:
+
+```bash
+# Crops only (needed for training / benign eval)
+python process_data.py --crops_only
+
+# Crops + synthetic laser-attack cache
+python process_data.py
+
+# Synth cache only (reuses existing crops / DTLD)
+python process_data.py --synth_only
+```
+
+Defaults:
+
+- `--dtld_root` -> `data/dtld`
+- `--labels_dir` -> `data/labels`
+- `--laser_root` -> `data/laser`
+- `--out_root` -> `data` -> writes `data/crops_jpg` and `data/synth_jpg`
+
+
+
+## 4. Train
+
+Pretrained models are available upon request.
+
+```bash
+python train_models.py \
+  --mode baseline \
+  --image_dir data/crops_jpg \
+  --labels_dir data/labels \
+  --save_dir checkpoints/baseline
+
+python train_models.py \
+  --mode card_owned \
+  --image_dir data/crops_jpg \
+  --labels_dir data/labels \
+  --save_dir checkpoints/card_owned
+```
+
+## 5. Evaluate
+
+From this directory, after checkpoints exist:
+
+```bash
+bash run_eval.sh
+```
+
+Reads from `data/`, writes under `output/`. Default caps are 1000 attack images per combo and 1000 benign images per state. Full eval:
+
+```bash
+MAX_PER_ATTACK_COMBO=0 MAX_PER_STATE=0 bash run_eval.sh
+```
+
+Optional: `BATCH_SIZE`, `CONDA_ENV`.
+
+The results can be visualized with `visualize_results.ipynb`
+
+## Notes
+
+- Override any path with the corresponding CLI flag or env var if your tree differs.
+- Shared path constants live in `helper.py` (`DATA_ROOT`, `DEFAULT_*`).
 

@@ -1,0 +1,13 @@
+name: traffic-vlm
+channels:
+  - defaults
+  - conda-forge
+  - pytorch
+dependencies:
+  - python=3.10
+  - pillow
+  - matplotlib
+  - scikit-learn
+  - rdflib
+  - numpy
+prefix: /blue/srampazzi/ncostagliola/.conda/envs/traffic-vlm
