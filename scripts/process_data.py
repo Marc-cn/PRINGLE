@@ -235,7 +235,7 @@ def build_synth_jpg(
         "ir_laser_dir": (
             None if realistic_only else os.path.abspath(ir_laser_dir)
         ),
-        "writer": "process_data.py",
+        "writer": "scripts/process_data.py",
     }
 
     if sim.synth_cache_ready(str(synth_dir)) and not force:

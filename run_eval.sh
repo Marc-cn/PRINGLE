@@ -28,7 +28,7 @@ BASELINE_CKPT="checkpoints/baseline/best_model.pt"
 
 [[ -f "${BASELINE_CKPT}" ]] || { echo "missing ${BASELINE_CKPT}" >&2; exit 1; }
 [[ -d "${DATA_SYNTH}/generated" ]] || {
-  echo "missing ${DATA_SYNTH}/generated — run process_data.py first" >&2
+  echo "missing ${DATA_SYNTH}/generated — run python scripts/process_data.py first" >&2
   exit 1
 }
 
@@ -54,7 +54,7 @@ for TAG in "${TAGS[@]}"; do
   else
     echo "=== laser eval ==="
     ATTACK_ARGS=(
-      python test_models.py
+      python scripts/test_models.py
       --models ontology
       --ontology_model "${CKPT}"
       --baseline_model "${BASELINE_CKPT}"
@@ -81,7 +81,7 @@ for TAG in "${TAGS[@]}"; do
   else
     echo "=== consistency eval ==="
     CONS_ARGS=(
-      python eval_cardinality_consistency.py
+      python scripts/eval_cardinality_consistency.py
       --ckpt "${CKPT}"
       --source both
       --image_dir "${DATA_CROPS}"

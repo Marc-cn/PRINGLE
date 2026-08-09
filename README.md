@@ -13,15 +13,16 @@ Not included in this repository is the DTLD dataset; you can download it [here](
 ## Layout
 
 ```
-clean/
+.
   data/
     dtld/           # YOU provide: DTLD city data
     labels/         # YOU provide: DTLD_Labels_v2.0/v2.0 JSON (Berlin.json, …)
     laser/          # provided: Red/ Green/ IR_modulated/ reference traces
-    crops_jpg/      # created by process_data.py
-    synth_jpg/      # optional; created by process_data.py
+    crops_jpg/      # created by scripts/process_data.py
+    synth_jpg/      # optional; created by scripts/process_data.py
   checkpoints/      # place or train *.pt checkpoints here
   output/           # laser ASR + cardinality-consistency results
+  scripts/          # Python train / eval / data pipeline
 ```
 
 
@@ -29,7 +30,7 @@ clean/
 ## 1. Create Environment
 
 ```bash
-conda env create -f clean/environment.yml
+conda env create -f environment.yml
 conda activate traffic-vlm
 ```
 
@@ -55,13 +56,13 @@ From this directory:
 
 ```bash
 # Crops only (needed for training / benign eval)
-python process_data.py --crops_only
+python scripts/process_data.py --crops_only
 
 # Crops + synthetic laser-attack cache
-python process_data.py
+python scripts/process_data.py
 
 # Synth cache only (reuses existing crops / DTLD)
-python process_data.py --synth_only
+python scripts/process_data.py --synth_only
 ```
 
 Defaults:
@@ -78,13 +79,13 @@ Defaults:
 Pretrained models are available upon request.
 
 ```bash
-python train_models.py \
+python scripts/train_models.py \
   --mode baseline \
   --image_dir data/crops_jpg \
   --labels_dir data/labels \
   --save_dir checkpoints/baseline
 
-python train_models.py \
+python scripts/train_models.py \
   --mode card_owned \
   --image_dir data/crops_jpg \
   --labels_dir data/labels \
@@ -112,5 +113,5 @@ The results can be visualized with `visualize_results.ipynb`
 ## Notes
 
 - Override any path with the corresponding CLI flag or env var if your tree differs.
-- Shared path constants live in `helper.py` (`DATA_ROOT`, `DEFAULT_*`).
+- Shared path constants live in `scripts/helper.py` (`DATA_ROOT`, `DEFAULT_*`).
 

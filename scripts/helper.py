@@ -23,20 +23,20 @@ CANON_STATES = ["red", "yellow", "green", "red_yellow", "off"]
 
 # Default paths.
 #
-# Layout:
+# Layout (repo root):
 #
-#   clean/
-#     data/
-#       dtld/                 # place raw DTLD frames here
-#       labels/               # place DTLD_Labels_v2.0/v2.0 JSON here
-#       laser/                # place Red/ Green/ IR_modulated/ traces here
-#       crops_jpg/            # written by process_data.py
-#       synth_jpg/            # optional; written by process_data.py
-#     output/                 # eval outputs (laser ASR, consistency)
-#     checkpoints/            # trained .pt checkpoints
+#   data/
+#     dtld/                 # place raw DTLD frames here
+#     labels/               # place DTLD_Labels_v2.0/v2.0 JSON here
+#     laser/                # place Red/ Green/ IR_modulated/ traces here
+#     crops_jpg/            # written by scripts/process_data.py
+#     synth_jpg/            # optional; written by scripts/process_data.py
+#   output/                 # eval outputs (laser ASR, consistency)
+#   checkpoints/            # trained .pt checkpoints
+#   scripts/                # Python entrypoints + helpers
 #
 
-PACKAGE_ROOT = Path(__file__).resolve().parent
+PACKAGE_ROOT = Path(__file__).resolve().parent.parent
 DATA_ROOT = PACKAGE_ROOT / "data"
 OUTPUT_ROOT = PACKAGE_ROOT / "output"
 
